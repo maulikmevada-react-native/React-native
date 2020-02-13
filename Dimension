@@ -1,0 +1,23 @@
+React-native How to All Device dimesion Create
+
+import { Dimensions,StatusBar} from 'react-native';
+const { width, height } = Dimensions.get('window');
+
+const deviceHeight = (Dimensions.get('window').height >= 812 ? Dimensions.get('window').height : Dimensions.get('window').height) * 0.01;
+const deviceWidth = Dimensions.get('window').width * 0.01;
+const statusBarHeight = Platform.OS === 'ios' ? (Dimensions.get('window').height >= 812 ? 40 : 20) : StatusBar.currentHeight;
+
+
+export function getDeviceHeight(heightInPercentage, includeStatusbar) {
+    return includeStatusbar ? statusBarHeight + (deviceHeight * heightInPercentage) : deviceHeight * heightInPercentage;
+}
+export function getDeviceWidth(widthInPercentage) {
+    return deviceWidth * widthInPercentage;
+}
+
+
+Example
+
+<View style={{width:getDeviceWidth(10),height:getDeviceHeight(10)}}>
+
+</View>
